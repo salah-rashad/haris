@@ -21,10 +21,7 @@ class LevelUpDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: const EdgeInsets.symmetric(horizontal: 16),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      backgroundColor: Colors.white,
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.all(32.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -35,22 +32,24 @@ class LevelUpDialog extends StatelessWidget {
               color: context.colorScheme.primaryFixedDim,
             ),
             const SizedBox(height: 22),
-            Text("Level Up!", style: context.textTheme.titleLarge),
+            Text("Level Up!", style: context.textTheme.headlineMedium),
             const SizedBox(height: 8),
             RichText(
               text: TextSpan(
-                style: context.textTheme.titleMedium?.apply(
+                style: context.textTheme.titleLarge?.copyWith(
                   color: context.colorScheme.primaryFixedDim,
                 ),
                 children: [
                   TextSpan(text: "Level ${oldLevel.index} "),
                   if (newLevel != null) ...[
                     WidgetSpan(
+                      alignment: PlaceholderAlignment.baseline,
+                      baseline: TextBaseline.alphabetic,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 2),
                         child: Icon(
                           LucideIcons.moveRight,
-                          size: 16,
+                          size: 18,
                           color: context.colorScheme.primaryFixedDim,
                         ),
                       ),
@@ -61,32 +60,35 @@ class LevelUpDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            Text("Total XP: $totalXp", style: context.textTheme.bodyMedium),
-            const SizedBox(height: 16),
+            Text(
+              "Total XP: $totalXp",
+              style: context.textTheme.bodyMedium?.apply(
+                color: context.colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 22),
             Text(
               "Great job! Keep going on your journey.",
               textAlign: TextAlign.center,
-              style: context.textTheme.bodyMedium?.apply(fontSizeDelta: 2),
+              style: context.textTheme.bodyLarge?.apply(
+                color: context.colorScheme.onSurfaceVariant,
+              ),
             ),
             const SizedBox(height: 32),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 "Rewards Unlocked",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey.shade900,
-                ),
+                style: context.textTheme.headlineSmall,
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 24),
             Row(
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: context.colorScheme.primaryContainer.withValues(
-                      alpha: 0.15,
+                    color: context.colorScheme.secondaryContainer.withValues(
+                      alpha: 0.5,
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -100,9 +102,7 @@ class LevelUpDialog extends StatelessWidget {
                 Expanded(
                   child: Text(
                     "You unlocked new daily quests!",
-                    style: context.textTheme.bodyMedium?.apply(
-                      color: context.colorScheme.onSurface,
-                    ),
+                    style: context.textTheme.bodyMedium,
                   ),
                 ),
               ],
@@ -113,8 +113,8 @@ class LevelUpDialog extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: context.colorScheme.primaryContainer.withValues(
-                        alpha: 0.15,
+                      color: context.colorScheme.secondaryContainer.withValues(
+                        alpha: 0.5,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -127,9 +127,8 @@ class LevelUpDialog extends StatelessWidget {
                   const SizedBox(width: 12),
                   Text(
                     "+$bonusXp XP Bonus",
-                    style: TextStyle(
+                    style: context.textTheme.labelLarge?.apply(
                       color: context.colorScheme.primaryFixedDim,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
-        titleTextStyle: context.textTheme.headlineSmall,
+        titleTextStyle: context.textTheme.titleLarge,
         leadingWidth: 72,
         leading: const UserAvatar(),
         elevation: 0,

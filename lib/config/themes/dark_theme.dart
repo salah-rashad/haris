@@ -5,47 +5,10 @@ final class DarkTheme extends AppTheme {
   Brightness get brightness => Brightness.dark;
 
   @override
-  TextTheme get textTheme => // Assuming a standard sans-serif font like Roboto
-  TextTheme(
-    // Home, Today's Quests - Larger, more prominent text
-    headlineSmall: const TextStyle(
-      fontSize: 20.0,
-      fontWeight: FontWeight.w800,
-      color: Colors.white70,
-    ),
-    // Level 3: Devoted
-    titleLarge: const TextStyle(
-      fontSize: 24.0,
-      fontWeight: FontWeight.w800, // Semi-bold for section headers
-      color: Colors.white70,
-    ),
-    // Pray Fajr, Daily Bonus!
-    titleMedium: const TextStyle(
-      fontSize: 16.0,
-      fontWeight: FontWeight.normal,
-      color: Colors.white70,
-    ),
-    // +50 XP, XP Numbers (1200 / 2000 XP)
-    bodyMedium: TextStyle(
-      fontSize: 14.0,
-      fontWeight: FontWeight.normal,
-      color: Colors.grey[600], // Secondary text color
-    ),
-    // Bottom Nav Labels
-    labelSmall: const TextStyle(
-      fontSize: 14.0,
-      fontWeight: FontWeight.normal,
-      color: Color(0xFF4CAF50), // Primary Green for active item
-    ),
-  );
+  TextTheme get textTheme => _createCustomTextTheme(true);
 
   @override
   ColorScheme get colorScheme => const ColorScheme.dark(
-    // primary: Color(0xFF17cf54),
-    // surface: Color(0xFF112116),
-    // onSurface: Color(0xFFf0f4f2),
-    // onSurfaceVariant: Color(0xFFf0f4f2),
-    // outlineVariant: Color(0xFF34513d),
     primary: Color(0xff47ec6d),
     surfaceTint: Color(0xff3be365),
     onPrimary: Color(0xff003911),

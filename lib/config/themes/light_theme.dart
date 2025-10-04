@@ -5,52 +5,10 @@ final class LightTheme extends AppTheme {
   Brightness get brightness => Brightness.light;
 
   @override
-  TextTheme get textTheme => TextTheme(
-    // Home, Today's Quests - Larger, more prominent text
-    headlineSmall: const TextStyle(
-      fontSize: 20.0,
-      fontWeight: FontWeight.w800,
-      color: Colors.black87,
-    ),
-
-    // Level 3: Devoted
-    titleLarge: const TextStyle(
-      fontSize: 24.0,
-      fontWeight: FontWeight.w800, // Semi-bold for section headers
-      color: Colors.black87,
-    ),
-
-    // Pray Fajr, Daily Bonus!
-    titleMedium: const TextStyle(
-      fontSize: 16.0,
-      fontWeight: FontWeight.w600,
-      color: Colors.black87,
-    ),
-
-    // +50 XP, XP Numbers (1200 / 2000 XP)
-    bodyMedium: TextStyle(
-      fontSize: 14.0,
-      fontWeight: FontWeight.normal,
-      color: Colors.grey[600], // Secondary text color
-    ),
-
-    // Bottom Nav Labels
-    labelSmall: const TextStyle(
-      fontSize: 14.0,
-      fontWeight: FontWeight.normal,
-      color: Color(0xFF558f6f), // Primary Green for active item
-    ),
-  );
+  TextTheme get textTheme => _createCustomTextTheme(false);
 
   @override
   ColorScheme get colorScheme => const ColorScheme.light(
-    // primary: Color(0xFF17cf54),
-    // surface: Color(0xFFf6f8f6),
-    // onSurface: Color(0xFF111813),
-    // onSurfaceVariant: Color(0xFF111813),
-    // // onSurfaceVariant: Color(0xFF63886f),
-    // // outline: Color(0xFFdce5df),
-    // outlineVariant: Color(0xFFdce5df),
     primary: Color(0xff006e27),
     surfaceTint: Color(0xff006e27),
     onPrimary: Color(0xffffffff),
@@ -68,9 +26,10 @@ final class LightTheme extends AppTheme {
     onError: Color(0xffffffff),
     errorContainer: Color(0xffffdad6),
     onErrorContainer: Color(0xff93000a),
+    // surface: Color(0xfff3fced),
     surface: Color(0xfff3fced),
     onSurface: Color(0xff151e15),
-    onSurfaceVariant: Color(0xff3c4a3b),
+    onSurfaceVariant: Color(0xff6b7969),
     outline: Color(0xff6c7b6a),
     outlineVariant: Color(0xffdae7df),
     shadow: Color(0xff000000),

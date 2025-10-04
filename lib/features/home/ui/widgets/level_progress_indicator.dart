@@ -34,7 +34,10 @@ class LevelProgressIndicator extends StatelessWidget {
             spacing: 12.0,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text("Level $id: $title", style: context.textTheme.titleLarge),
+              Text(
+                "Level $id: $title",
+                style: context.textTheme.headlineMedium,
+              ),
               TweenAnimationBuilder(
                 duration: const Duration(milliseconds: 600),
                 tween: Tween<double>(begin: progress, end: progress),
@@ -53,18 +56,18 @@ class LevelProgressIndicator extends StatelessWidget {
                 alignment: AlignmentDirectional.centerEnd,
                 child: RichText(
                   text: TextSpan(
-                    style: context.textTheme.labelSmall?.apply(
+                    style: context.textTheme.bodyMedium?.apply(
                       color: context.colorScheme.primary,
                     ),
                     children: [
                       WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
                         child: AnimatedDigitWidget(
                           value: earnedXp,
                           duration: const Duration(milliseconds: 1200),
                           curve: Curves.easeInOutCubicEmphasized,
-                          textStyle: context.textTheme.labelSmall?.apply(
+                          textStyle: context.textTheme.bodyMedium?.apply(
                             color: context.colorScheme.primary,
-                            heightDelta: -0.2,
                           ),
                         ),
                       ),

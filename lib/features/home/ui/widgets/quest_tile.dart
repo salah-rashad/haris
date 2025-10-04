@@ -4,6 +4,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import '../../../../core/database/app_database.dart';
 import '../../../../core/models/quest_with_progress.dart';
 import '../../../../core/utils/extensions.dart';
+import '../../../shared/modals/quest_details_bottom_sheet.dart';
 
 class QuestTile extends StatelessWidget {
   const QuestTile({super.key, required this.data, this.onComplete});
@@ -17,11 +18,6 @@ class QuestTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final doneCount = questLog?.progressCount ?? 0;
-    // final progress = doneCount / quest.requiredPerDay;
-    // final progressText = '$doneCount/${quest.requiredPerDay}';
-    final xpRewardText = '+${quest.xpReward} XP';
-
     final disabledColor = Color.alphaBlend(
       context.colorScheme.outline.withValues(alpha: 0.3),
       context.colorScheme.surface,
@@ -39,7 +35,7 @@ class QuestTile extends StatelessWidget {
         ),
       ),
       child: ListTile(
-        onTap: isCompleted ? null : onComplete,
+        onTap: () => _showDetails(context),
         contentPadding: const EdgeInsets.symmetric(horizontal: 18.0),
         minVerticalPadding: 22.0,
         titleAlignment: ListTileTitleAlignment.top,
@@ -65,11 +61,11 @@ class QuestTile extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 quest.description ?? '',
-                style: context.textTheme.bodySmall?.copyWith(
+                style: context.textTheme.bodyMedium?.copyWith(
                   color: isCompleted
                       ? disabledColor
                       : context.colorScheme.onSurfaceVariant,
-                  fontStyle: FontStyle.italic,
+                  fontStyle: isCompleted ? FontStyle.italic : null,
                   decoration: isCompleted ? TextDecoration.lineThrough : null,
                   decorationColor: isCompleted ? disabledColor : null,
                 ),
@@ -80,22 +76,36 @@ class QuestTile extends StatelessWidget {
         trailing: AbsorbPointer(
           child: Chip(
             padding: EdgeInsets.zero,
-            label: isCompleted
-                ? Icon(
-                    LucideIcons.check,
-                    color: context.colorScheme.primaryFixedDim,
-                  )
-                : Text(xpRewardText),
+            visualDensity: VisualDensity.compact,
+            labelPadding: EdgeInsetsDirectional.only(
+              start: 8,
+              end: isCompleted ? 0 : 8,
+            ),
             shape: const StadiumBorder(
               side: BorderSide(color: Colors.transparent),
             ),
             backgroundColor: context.colorScheme.surfaceContainerLow,
-            labelStyle: context.textTheme.labelSmall?.apply(
-              color: context.colorScheme.outline,
+            onDeleted: isCompleted ? () {} : null,
+            deleteIcon: Icon(LucideIcons.check, color: disabledColor),
+            label: Text('+${quest.xpReward} XP'),
+            labelStyle: context.textTheme.labelMedium?.apply(
+              color: isCompleted ? disabledColor : context.colorScheme.outline,
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Future _showDetails(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return QuestDetailsBottomSheet(
+          questWithProgress: data,
+          onCompletePressed: onComplete,
+        );
+      },
     );
   }
 }
